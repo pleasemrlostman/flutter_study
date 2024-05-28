@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_prog/screen/home_screen.dart';
 
 void main() {
   runApp(
@@ -6,33 +7,4 @@ void main() {
       home: HomeScreen(),
     ),
   );
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // 335cb0
-      backgroundColor: Color(0xFF335CB0),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "asset/img/logo.png",
-            ),
-            SizedBox(
-              height: 28.0,
-            ),
-            CircularProgressIndicator(
-              color: Colors.white,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

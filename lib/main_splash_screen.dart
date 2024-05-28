@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main_splash_screen() {
+void main() {
   runApp(
     MaterialApp(
       home: HomeScreen(),
@@ -8,23 +8,30 @@ void main_splash_screen() {
   );
 }
 
-// StatelessWidget
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // 335cb0
       backgroundColor: Color(0xFF335CB0),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "asset/img/logo.png",
-          ),
-          CircularProgressIndicator(
-            color: Colors.white,
-          ),
-        ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "asset/img/logo.png",
+            ),
+            SizedBox(
+              height: 28.0,
+            ),
+            CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }
