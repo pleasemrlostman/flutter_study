@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
+void main_splash_screen() {
   runApp(
     MaterialApp(
       home: HomeScreen(),
