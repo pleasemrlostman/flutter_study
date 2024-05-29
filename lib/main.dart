@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:test_prog/screen/stateful/home_screen.dart';
-import 'package:test_prog/screen/life_cycle/stateless/home_screen.dart';
+import 'package:test_prog/screen/life_cycle/statefull/home_screen.dart';
 
 void main() {
   runApp(MaterialApp(
