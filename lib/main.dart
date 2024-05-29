@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_prog/screen/home_screen.dart';
-import 'package:test_prog/screen/home_screen_padding.dart';
+import 'package:test_prog/screen/blog/home_screen.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      home: HomeScreenPadding(),
-    ),
-  );
+  runApp(MaterialApp(
+    home: HomeScreen(),
+  ));
 }
