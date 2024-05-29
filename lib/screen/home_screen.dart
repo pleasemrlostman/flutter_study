@@ -9,19 +9,55 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Colors.black,
+          color: Colors.white,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: colors
-                .map(
-                  (e) => Container(
-                    height: 50,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: colors
+                    .map(
+                      (e) => Container(
+                        height: 50.0,
+                        width: 50.0,
+                        color: e,
+                      ),
+                    )
+                    .toList(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 50.0,
                     width: 50.0,
-                    color: e,
+                    color: Colors.orange,
                   ),
-                )
-                .toList(),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: colors
+                    .map(
+                      (e) => Container(
+                        height: 50.0,
+                        width: 50.0,
+                        color: e,
+                      ),
+                    )
+                    .toList(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 50.0,
+                    width: 50.0,
+                    color: Colors.green,
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
