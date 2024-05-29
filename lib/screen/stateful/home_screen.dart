@@ -1,9 +1,15 @@
 import "package:flutter/material.dart";
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   Color color = Colors.blue;
   @override
   Widget build(BuildContext context) {
+    print("build 실행");
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -12,12 +18,13 @@ class HomeScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                if(color == Colors.blue) {
+                if (color == Colors.blue) {
                   color = Colors.red;
                 } else {
                   color = Colors.blue;
                 }
                 print("색상 변경 color: $color");
+                setState(() {});
               },
               child: Text("색상변경"),
             ),
