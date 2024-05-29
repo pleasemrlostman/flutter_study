@@ -100,4 +100,10 @@ class _CodeFactoryWidgetState extends State<CodeFactoryWidget> {
     print("7) Stateful Widget dispose");
     super.dispose();
   }
+
+  @override
+  void didUpdateWidget(covariant CodeFactoryWidget oldWidget) {
+    print("10) Stateful Widget update");
+    super.didUpdateWidget(oldWidget);
+  }
 }
