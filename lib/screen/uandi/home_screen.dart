@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,10 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               // 텍스트
-              _Top(),
+              _Top(
+                selectedDate: selectedDate,
+                onPressed: onHeartPressed,
+              ),
               // 이미지
               _Bottom(),
             ],
@@ -23,17 +33,37 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  void onHeartPressed() {
+    showCupertinoDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.center,
+          child: Container(
+            color: Colors.white,
+            height: 300.0,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              dateOrder: DatePickerDateOrder.ymd,
+              onDateTimeChanged: (DateTime date) {
+                setState(() {
+                  selectedDate = date;
+                });
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
-class _Top extends StatefulWidget {
-  const _Top({super.key});
-
-  @override
-  State<_Top> createState() => _TopState();
-}
-
-class _TopState extends State<_Top> {
-  DateTime selectedDate = DateTime.now();
+class _Top extends StatelessWidget {
+  final DateTime selectedDate;
+  final VoidCallback? onPressed;
+  const _Top({super.key, required this.selectedDate, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -59,30 +89,7 @@ class _TopState extends State<_Top> {
             IconButton(
               iconSize: 60.0,
               color: Colors.red,
-              onPressed: () {
-                showCupertinoDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (BuildContext context) {
-                    return Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        color: Colors.white,
-                        height: 300.0,
-                        child: CupertinoDatePicker(
-                          mode: CupertinoDatePickerMode.date,
-                          dateOrder: DatePickerDateOrder.ymd,
-                          onDateTimeChanged: (DateTime date) {
-                            setState(() {
-                              selectedDate = date;
-                            });
-                          },
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
+              onPressed: onPressed,
               icon: Icon(
                 Icons.favorite,
               ),
