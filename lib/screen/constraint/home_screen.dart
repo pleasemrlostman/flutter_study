@@ -11,14 +11,13 @@ class HomeScreen extends StatelessWidget {
           height: 200,
           width: 200,
           color: Colors.red,
-          child: Row(
-            children: [
-              Container(
-                height: 50,
-                width: 50,
-                color: Colors.black,
-              ),
-            ],
+          child: Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 50,
+              width: 50,
+              color: Colors.black,
+            ),
           ),
         ),
       ),
