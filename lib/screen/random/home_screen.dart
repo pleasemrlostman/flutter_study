@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:test_prog/const/colors.dart';
+import 'dart:math';
+
+import 'package:test_prog/screen/random/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,33 +28,51 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               //   제목과 아이콘 버튼이 있는곳
-              _Header(),
+              _Header(
+                onPressed: onSettingIconPressed,
+              ),
               //   숫자가 있는곳
               _Body(
                 numbers: numbers,
               ),
               //   버튼이 있는곳
-              _Footer(
-                onPressed: () {
-                  setState(() {
-                    numbers = [
-                      999,
-                      888,
-                      777,
-                    ];
-                  });
-                },
-              ),
+              _Footer(onPressed: generateRandomNumber),
             ],
           ),
         ),
       ),
     );
   }
+
+  onSettingIconPressed() {
+    // stateless는 context에 전역적으로 접근이 불가능하지만 statefull은 가능합니다.
+    // 위젯트리의 정보를 가지고 있음
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return SettingScreen();
+        },
+      ),
+    );
+  }
+
+  void generateRandomNumber() {
+    final rand = Random();
+    final Set<int> newNumbers = {};
+    while (newNumbers.length < 3) {
+      final randomNumber = rand.nextInt(1000);
+      newNumbers.add(randomNumber);
+    }
+    setState(() {
+      numbers = newNumbers.toList();
+    });
+  }
 }
 
 class _Header extends StatelessWidget {
-  const _Header({super.key});
+  final VoidCallback onPressed;
+
+  const _Header({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +89,7 @@ class _Header extends StatelessWidget {
         ),
         IconButton(
           color: redColor,
-          onPressed: () {},
+          onPressed: onPressed,
           icon: Icon(
             Icons.settings,
           ),
