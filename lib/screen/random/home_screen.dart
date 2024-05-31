@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:test_prog/const/colors.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<int> numbers = [888, 456, 789];
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +27,21 @@ class HomeScreen extends StatelessWidget {
               //   제목과 아이콘 버튼이 있는곳
               _Header(),
               //   숫자가 있는곳
-              _Body(),
+              _Body(
+                numbers: numbers,
+              ),
               //   버튼이 있는곳
-              _Footer(),
+              _Footer(
+                onPressed: () {
+                  setState(() {
+                    numbers = [
+                      999,
+                      888,
+                      777,
+                    ];
+                  });
+                },
+              ),
             ],
           ),
         ),
@@ -60,18 +79,15 @@ class _Header extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({super.key});
+  final List<int> numbers;
+  const _Body({super.key, required this.numbers});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          123,
-          456,
-          789,
-        ]
+        children: numbers
             .map((e) => e.toString().split(""))
             .map(
               (e) => Row(
@@ -93,12 +109,14 @@ class _Body extends StatelessWidget {
 }
 
 class _Footer extends StatelessWidget {
-  const _Footer({super.key});
+  final VoidCallback onPressed;
+
+  const _Footer({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: redColor,
         foregroundColor: Colors.white,
