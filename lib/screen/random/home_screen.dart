@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:test_prog/component/random/number_to_img.dart';
 import 'package:test_prog/const/colors.dart';
 import 'dart:math';
 
@@ -109,20 +110,20 @@ class _Body extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: numbers
-            .map((e) => e.toString().split(""))
-            .map(
-              (e) => Row(
-                children: e
-                    .map(
-                      (number) => Image.asset(
-                        'asset/img/$number.png',
-                        width: 50.0,
-                        height: 70.0,
-                      ),
-                    )
-                    .toList(),
-              ),
-            )
+            .map((e) => NumberToImg(number: e))
+            // .map(
+            //   (e) => Row(
+            //     children: e
+            //         .map(
+            //           (number) => Image.asset(
+            //             'asset/img/$number.png',
+            //             width: 50.0,
+            //             height: 70.0,
+            //           ),
+            //         )
+            //         .toList(),
+            //   ),
+            // )
             .toList(),
       ),
     );

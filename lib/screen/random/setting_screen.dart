@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_prog/component/random/number_to_img.dart';
 import 'package:test_prog/const/colors.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -23,14 +24,23 @@ class _SettingScreenState extends State<SettingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _Button(),
               _Number(maxNumber: maxNumber),
-              _Slider(),
+              _Slider(
+                value: maxNumber,
+                onChanged: onSliderChange,
+              ),
+              _Button(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  onSliderChange(double value) {
+    setState(() {
+      maxNumber = value;
+    });
   }
 }
 
@@ -60,19 +70,8 @@ class _Number extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        child: Row(
-          children: maxNumber
-              .toInt()
-              .toString()
-              .split("")
-              .map(
-                (number) => Image.asset(
-                  'asset/img/$number.png',
-                  width: 50.0,
-                  height: 70.0,
-                ),
-              )
-              .toList(),
+        child: NumberToImg(
+          number: maxNumber.toInt(),
         ),
       ),
     );
@@ -80,10 +79,19 @@ class _Number extends StatelessWidget {
 }
 
 class _Slider extends StatelessWidget {
-  const _Slider({super.key});
+  final double value;
+  final ValueChanged<double> onChanged;
+
+  const _Slider({required this.value, required this.onChanged, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Slider(
+      value: value,
+      min: 1000,
+      max: 100000,
+      activeColor: redColor,
+      onChanged: onChanged,
+    );
   }
 }
