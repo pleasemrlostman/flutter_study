@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:test_prog/const/colors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -64,11 +65,28 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Text('''
-                123
-                456
-                789
-                '''),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          [1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]
+        ]
+            .map(
+              (e) => Row(
+                children: e
+                    .map(
+                      (number) => Image.asset(
+                        'asset/img/$number.png',
+                        width: 50.0,
+                        height: 70.0,
+                      ),
+                    )
+                    .toList(),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
