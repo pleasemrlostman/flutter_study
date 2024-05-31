@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<int> numbers = [888, 456, 789];
+  int maxNumber = 1000;
 
   @override
   Widget build(BuildContext context) {
@@ -45,23 +46,25 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  onSettingIconPressed() {
+  onSettingIconPressed() async {
     // stateless는 context에 전역적으로 접근이 불가능하지만 statefull은 가능합니다.
     // 위젯트리의 정보를 가지고 있음
-    Navigator.of(context).push(
+    final result = await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) {
           return SettingScreen();
         },
       ),
     );
+
+    maxNumber = result;
   }
 
   void generateRandomNumber() {
     final rand = Random();
     final Set<int> newNumbers = {};
     while (newNumbers.length < 3) {
-      final randomNumber = rand.nextInt(1000);
+      final randomNumber = rand.nextInt(maxNumber);
       newNumbers.add(randomNumber);
     }
     setState(() {
@@ -110,20 +113,9 @@ class _Body extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: numbers
-            .map((e) => NumberToImg(number: e))
-            // .map(
-            //   (e) => Row(
-            //     children: e
-            //         .map(
-            //           (number) => Image.asset(
-            //             'asset/img/$number.png',
-            //             width: 50.0,
-            //             height: 70.0,
-            //           ),
-            //         )
-            //         .toList(),
-            //   ),
-            // )
+            .map(
+              (e) => NumberToImg(number: e),
+            )
             .toList(),
       ),
     );
