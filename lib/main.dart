@@ -1,31 +1,42 @@
 import 'package:flutter/material.dart';
-// // import 'package:test_prog/screen/stateful/home_screen.dart';
-// // import 'package:test_prog/screen/life_cycle/statefull/home_screen.dart';
-// // import 'package:test_prog/screen/timer/home_screen.dart';
-// // import 'package:test_prog/screen/uandi/home_screen.dart';
-// // import 'package:test_prog/screen/constraint/home_screen.dart';
-// import 'package:test_prog/screen/random/home_screen.dart';
-// import 'package:test_prog/screen/button/home_screen.dart';
-import 'package:test_prog/screen/navigation//home_screen.dart';
-import 'package:test_prog/screen/navigation/route_one_screen.dart';
-import 'package:test_prog/screen/navigation/route_three_screen.dart';
-import 'package:test_prog/screen/navigation/route_two_screen.dart';
+import 'package:get/get.dart';
+import 'package:test_prog/page/name/name_first.dart';
+import 'package:test_prog/page/name/name_next.dart';
+import 'package:test_prog/page/name/name_second.dart';
+import 'package:test_prog/page/user/user_page.dart';
+import 'package:test_prog/screen/getx/home_screen.dart';
 
 // Imperative vs Declarative
 // 명령적으로 라우팅을 할 것인가 선언적으로 할 것인가.
 void main() {
   runApp(
-    MaterialApp(
-      // home: HomeScreen(),
-      initialRoute: "/",
-      routes: {
-        //   key -라우트 이름
-        //   value - builder -> 이동하고싶은 라우트
-        '/': (BuildContext context) => HomeScreen(),
-        '/one': (BuildContext context) => RouteOneScreen(number: 999),
-        '/two': (BuildContext context) => RouteTwoScreen(),
-        '/three': (BuildContext context) => RouteThreeScreen(),
-      },
+    GetMaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity),
+      home: HomeScreen(),
+      // initialRoute: "/",
+      getPages: [
+        GetPage(
+            name: "/", page: () => HomeScreen(), transition: Transition.zoom),
+        GetPage(
+            name: "/first",
+            page: () => NameFirstPage(),
+            transition: Transition.zoom),
+        GetPage(
+            name: "/second",
+            page: () => NameSecondPage(),
+            transition: Transition.zoom),
+        GetPage(
+            name: "/next",
+            page: () => NameNext(),
+            transition: Transition.zoom),
+        GetPage(
+            name: "/user/:uid",
+            page: () => UserPage(),
+            transition: Transition.zoom),
+      ],
     ),
   );
 }
