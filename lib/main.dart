@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 // // import 'package:test_prog/screen/uandi/home_screen.dart';
 // // import 'package:test_prog/screen/constraint/home_screen.dart';
 // import 'package:test_prog/screen/random/home_screen.dart';
-import 'package:test_prog/screen/button/home_screen.dart';
+// import 'package:test_prog/screen/button/home_screen.dart';
+import 'package:test_prog/screen/navigation//home_screen.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: HomeScreen(),
-  ));
+  runApp(
+    MaterialApp(
+      home: HomeScreen(),
+    ),
+  );
 }
