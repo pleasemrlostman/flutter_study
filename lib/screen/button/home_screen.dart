@@ -49,7 +49,35 @@ class HomeScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {},
-              child: Text("Text Button"),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith(
+                  (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.red;
+                    }
+                    return Colors.black;
+                  },
+                ),
+                foregroundColor: MaterialStateProperty.resolveWith(
+                  (states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.black;
+                    }
+                    return Colors.white;
+                  },
+                ),
+                minimumSize: MaterialStateProperty.resolveWith(
+                  (states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Size(200, 150);
+                    }
+                    return Size(300, 200);
+                  },
+                ),
+              ),
+              child: Text(
+                "Text Button",
+              ),
             ),
           ],
         ),
