@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_prog/layout/navigation/default_layout.dart';
+import 'package:test_prog/screen/navigation/route_three_screen.dart';
 
 class RouteTwoScreen extends StatelessWidget {
   const RouteTwoScreen({super.key});
@@ -19,6 +20,24 @@ class RouteTwoScreen extends StatelessWidget {
             Navigator.of(context).pop();
           },
           child: Text("route two screen"),
+        ),
+        OutlinedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return RouteThreeScreen();
+                },
+              ),
+            );
+          },
+          child: Text("Push Route Three"),
+        ),
+        OutlinedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed("/three",arguments: 1111);
+          },
+          child: Text("Push Route Three"),
         )
       ],
     );

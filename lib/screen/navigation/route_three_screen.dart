@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:test_prog/layout/navigation/default_layout.dart';
 
 class RouteThreeScreen extends StatelessWidget {
   const RouteThreeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final arguments = ModalRoute.of(context)?.settings.arguments;
+
+    return DefaultLayout(
+      title: "Route Three Screen",
+      children: [
+        Text(
+          arguments.toString(),
+          textAlign: TextAlign.center,
+        ),
+        OutlinedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text("pop"),
+        )
+      ],
+    );
   }
 }
