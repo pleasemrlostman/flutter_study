@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_prog/page/name/name_first.dart';
 import 'package:test_prog/page/normal/first.dart';
+import 'package:test_prog/page/state/reactive_state_manage_page.dart';
 import 'package:test_prog/page/state/simple_state_manage_page.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -52,6 +53,12 @@ class HomeScreen extends StatelessWidget {
               child: Text("단순 상태 관리"),
               onPressed: () {
                 Get.to(SimpleStateManagePage());
+              },
+            ),
+            OutlinedButton(
+              child: Text("반응형 상태 관리"),
+              onPressed: () {
+                Get.to(ReactiveStateManagePage());
               },
             )
           ],
