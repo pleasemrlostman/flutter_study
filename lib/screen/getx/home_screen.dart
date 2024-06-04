@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_prog/page/name/name_first.dart';
 import 'package:test_prog/page/normal/first.dart';
+import 'package:test_prog/page/state/simple_state_manage_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,6 +46,12 @@ class HomeScreen extends StatelessWidget {
                 // Get.to(NameFirstPage(),arguments: "재훈");
                 // Get.toNamed("/next", arguments: "재훈");
                 Get.toNamed("/user/28357?name=재훈&age=32");
+              },
+            ),
+            OutlinedButton(
+              child: Text("단순 상태 관리"),
+              onPressed: () {
+                Get.to(SimpleStateManagePage());
               },
             )
           ],
